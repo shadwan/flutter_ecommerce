@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "835640160018",
+    "project_id": "shadman-ecom-flutter-course",
+    "storage_bucket": "shadman-ecom-flutter-course.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:835640160018:android:f237e8d726d92f6c014dcb",
+        "android_client_info": {
+          "package_name": "com.example.ecommerce"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "835640160018-23ml5ej0hdjpbb7ari3snub3apo05d3s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDmuljTCKHcdSt59zwa3x_ZQF6emM81Cp4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "835640160018-23ml5ej0hdjpbb7ari3snub3apo05d3s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
