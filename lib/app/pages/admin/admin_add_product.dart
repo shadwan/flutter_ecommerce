@@ -1,3 +1,5 @@
+import 'package:ecommerce/app/providers.dart';
+import 'package:ecommerce/models/product_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -43,7 +45,7 @@ class _AdminAddProductPageState extends ConsumerState<AdminAddProductPage> {
             ),
             const Spacer(),
             ElevatedButton(
-              onPressed: () => _addProduct,
+              onPressed: () => _addProduct(),
               child: const Text("Add Product"),
             )
           ],
@@ -52,7 +54,19 @@ class _AdminAddProductPageState extends ConsumerState<AdminAddProductPage> {
     );
   }
 
-  _addProduct() {}
+  _addProduct() async {
+    final storage = ref.read(databaseProvider);
+    if (storage == null) {
+      return;
+    }
+    await storage.addProduct(Product(
+      name: titleTextEditingController.text,
+      description: descriptionEditingController.text,
+      price: double.parse(priceEditingController.text),
+      imageUrl: "image",
+    ));
+    Navigator.pop(context);
+  }
 }
 
 class CustomInputFieldFb1 extends StatelessWidget {
