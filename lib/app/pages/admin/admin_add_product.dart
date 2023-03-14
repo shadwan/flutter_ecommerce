@@ -24,31 +24,32 @@ class _AdminAddProductPageState extends ConsumerState<AdminAddProductPage> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(25.0),
-        child: Column(
-          children: [
-            CustomInputFieldFb1(
-              inputController: titleTextEditingController,
-              hintText: 'Product Name',
-              labelText: 'Product Name',
-            ),
-            const SizedBox(height: 15),
-            CustomInputFieldFb1(
-              inputController: descriptionEditingController,
-              hintText: 'Product Description',
-              labelText: 'Product Description',
-            ),
-            const SizedBox(height: 15),
-            CustomInputFieldFb1(
-              inputController: priceEditingController,
-              hintText: 'Price',
-              labelText: 'Price',
-            ),
-            const Spacer(),
-            ElevatedButton(
-              onPressed: () => _addProduct(),
-              child: const Text("Add Product"),
-            )
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              CustomInputFieldFb1(
+                inputController: titleTextEditingController,
+                hintText: 'Product Name',
+                labelText: 'Product Name',
+              ),
+              const SizedBox(height: 15),
+              CustomInputFieldFb1(
+                inputController: descriptionEditingController,
+                hintText: 'Product Description',
+                labelText: 'Product Description',
+              ),
+              const SizedBox(height: 15),
+              CustomInputFieldFb1(
+                inputController: priceEditingController,
+                hintText: 'Price',
+                labelText: 'Price',
+              ),
+              ElevatedButton(
+                onPressed: () => _addProduct(),
+                child: const Text("Add Product"),
+              )
+            ],
+          ),
         ),
       ),
     );
