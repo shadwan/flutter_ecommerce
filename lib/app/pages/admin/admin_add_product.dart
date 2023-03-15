@@ -2,6 +2,7 @@ import 'package:ecommerce/app/providers.dart';
 import 'package:ecommerce/models/product.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:image_picker/image_picker.dart';
 
 class AdminAddProductPage extends ConsumerStatefulWidget {
   const AdminAddProductPage({super.key});
@@ -47,7 +48,14 @@ class _AdminAddProductPageState extends ConsumerState<AdminAddProductPage> {
               ElevatedButton(
                 onPressed: () => _addProduct(),
                 child: const Text("Add Product"),
-              )
+              ),
+              ElevatedButton(
+                onPressed: () async {
+                  final image = await ImagePicker()
+                      .pickImage(source: ImageSource.gallery);
+                },
+                child: const Text("Upload Image"),
+              ),
             ],
           ),
         ),
