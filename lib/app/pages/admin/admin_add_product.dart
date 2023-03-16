@@ -1,8 +1,13 @@
+import 'dart:io';
+
 import 'package:ecommerce/app/providers.dart';
 import 'package:ecommerce/models/product.dart';
+import 'package:ecommerce/utils/snackbars.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
+
+final addImageProvider = StateProvider<XFile?>((_) => null);
 
 class AdminAddProductPage extends ConsumerStatefulWidget {
   const AdminAddProductPage({super.key});
@@ -49,10 +54,24 @@ class _AdminAddProductPageState extends ConsumerState<AdminAddProductPage> {
                 onPressed: () => _addProduct(),
                 child: const Text("Add Product"),
               ),
+              Consumer(
+                builder: (context, watch, child) {
+                  final image = ref.watch(addImageProvider);
+                  return image == null
+                      ? const Text("No iamge selected")
+                      : Image.file(
+                          File(image.path),
+                          height: 200,
+                        );
+                },
+              ),
               ElevatedButton(
                 onPressed: () async {
                   final image = await ImagePicker()
                       .pickImage(source: ImageSource.gallery);
+                  if (image != null) {
+                    ref.watch(addImageProvider.notifier).state = image;
+                  }
                 },
                 child: const Text("Upload Image"),
               ),
@@ -65,15 +84,28 @@ class _AdminAddProductPageState extends ConsumerState<AdminAddProductPage> {
 
   _addProduct() async {
     final storage = ref.read(databaseProvider);
-    if (storage == null) {
+    final imageFile = ref.read(addImageProvider.notifier).state;
+    final fileStorage = ref.read(storageProvider);
+
+    if (storage == null || imageFile == null || fileStorage == null) {
       return;
     }
+
+    final imageUrl = await fileStorage.uploadFile(imageFile.path);
+
     await storage.addProduct(Product(
       name: titleTextEditingController.text,
       description: descriptionEditingController.text,
       price: double.parse(priceEditingController.text),
-      imageUrl: "image",
+      imageUrl: imageUrl,
     ));
+    openIconSnackBar(
+        context,
+        "Product added successfully",
+        const Icon(
+          Icons.check,
+          color: Colors.white,
+        ));
     Navigator.pop(context);
   }
 }
