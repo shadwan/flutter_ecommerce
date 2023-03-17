@@ -7,6 +7,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'app/pages/user/user_home.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
@@ -29,22 +31,8 @@ class MyApp extends ConsumerWidget {
         primary: Colors.amberAccent,
       )),
       home: AuthWidget(
-          adminSignedInBuilder: (context) => AdminHome(),
-          signedInBuilder: (context) => Scaffold(
-                body: Center(
-                    child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    const Text("Signed In in"),
-                    ElevatedButton(
-                      onPressed: () {
-                        ref.read(firebaseAuthProvider).signOut();
-                      },
-                      child: const Text("Sign Out"),
-                    )
-                  ],
-                )),
-              ),
+          adminSignedInBuilder: (context) => const AdminHome(),
+          signedInBuilder: (context) => const UserHome(),
           nonSignedInBuilder: (_) => const SignInPage()),
     );
   }
