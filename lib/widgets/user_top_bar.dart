@@ -1,3 +1,4 @@
+import 'package:ecommerce/app/pages/user/user_bag.dart';
 import 'package:flutter/material.dart';
 
 class UserTopBar extends StatelessWidget {
@@ -15,13 +16,19 @@ class UserTopBar extends StatelessWidget {
             // Navigator.push(context,
             //     MaterialPageRoute(builder: (context) => const UserOrders()));
           },
-          icon: Icon(Icons.menu)),
+          icon: const Icon(Icons.menu)),
       IconButton(
         onPressed: () {
-          // Navigator.push(context,
-          //     MaterialPageRoute(builder: (context) => const UserBag()));
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const UserBag(),
+            ),
+          );
         },
-        icon: Icon(Icons.shopping_cart),
+        icon: const Icon(
+          Icons.shopping_cart,
+        ),
       )
     ]);
   }

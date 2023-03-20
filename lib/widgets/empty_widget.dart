@@ -12,7 +12,7 @@ class EmptyWidget extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         Lottie.asset(
-          "/assets/anim/empty.json",
+          "assets/anim/empty.json",
           width: 200,
           repeat: false,
         ),
