@@ -72,7 +72,27 @@ class UserBag extends ConsumerWidget {
                       ),
                     ),
                     ElevatedButton(
-                      onPressed: () async {},
+                      onPressed: () async {
+                        final payment = ref.read(paymentProvider);
+                        final user = ref.read(authStateChangesProvider);
+                        final userBag = ref.watch(bagProvider);
+                        final result = await payment.initPaymentSheet(
+                            user.value!, userBag.totalPrice);
+                        if (!result.isError) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(content: Text('Payment completed!')),
+                          );
+                          userBag.clearBag();
+                          Navigator.pop(context);
+                        } else {
+                          print(result.isError);
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text(result.message),
+                            ),
+                          );
+                        }
+                      },
                       child: const Text("Checkout"),
                     ),
                   ],

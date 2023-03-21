@@ -6,6 +6,7 @@ import 'package:ecommerce/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 
 import 'app/pages/user/user_home.dart';
 
@@ -14,6 +15,10 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
+  Stripe.publishableKey =
+      "pk_test_51Mo6oBA5wygUbsiY36eayPK5dfHd6Rgl3rw89JISXVKwp6qNIfUii5M6kA1zhm1w2J1aCSXth9FxSWtqBSLcpJt800QOZLXN3J";
+
   runApp(ProviderScope(child: MyApp()));
 }
 
