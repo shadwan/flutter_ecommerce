@@ -29,4 +29,6 @@ class Product {
         price = map['price'] ?? 0.0,
         imageUrl = map['imageUrl'] ?? '',
         id = map['id'] ?? '';
+
+  double get priceWithTax => price * 1.2;
 }

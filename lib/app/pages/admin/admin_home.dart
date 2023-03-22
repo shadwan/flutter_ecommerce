@@ -77,7 +77,7 @@ class AdminHome extends ConsumerWidget {
           }
           return const Center(child: CircularProgressIndicator());
         }),
-        stream: ref.read(databaseProvider)!.getProducts(),
+        stream: ref.read(databaseProvider)?.getProducts(),
       ),
     );
   }
